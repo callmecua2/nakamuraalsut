@@ -1,0 +1,435 @@
+---
+// src/components/pages/Blog.astro
+---
+
+<!-- FIXED FULLSCREEN BACKGROUND LAYER -->
+<div class="blog-fixed-bg" aria-hidden="true"></div>
+
+<!-- 1. JUDUL ARTIKEL DI BAWAH NAVBAR -->
+<header class="blog-header">
+  <h1>Blog &amp; Jurnal</h1>
+  <p>Catatan harian, refleksi holistik, dan obrolan seputar film &amp; kehidupan.</p>
+</header>
+
+<main class="blog-container">
+  <!-- 2. 3 FEATURED CARDS (TERUPDATE) -->
+  <section class="featured-section">
+    <h2 class="section-title">Artikel Terupdate</h2>
+    <div class="featured-grid">
+
+      <!-- Card 1 -->
+      <a href="#" class="horizontal-card">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Preview Gambar" loading="lazy" />
+        </div>
+        <div class="card-content">
+          <div>
+            <div class="card-header-meta">
+              <span class="card-source">angara.id</span>
+              <button class="more-options-btn" aria-label="Option"><i class="fas fa-ellipsis-v"></i></button>
+            </div>
+            <h3 class="card-title">Eksklusif Dari De Wave, Menangkan iPhone 17 Pro Max Terbaru</h3>
+            <p class="card-excerpt">
+              Menjaga keseimbangan antara kepadatan rutinitas harian dan kesehatan tubuh adalah kunci utama untuk mempertahankan kualitas hidup yang baik...
+            </p>
+          </div>
+          <div>
+            <hr class="card-divider" />
+            <div class="card-footer-action">
+              <span>11 Agt 2026</span>
+              <button class="like-btn" aria-label="Like"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="#" class="horizontal-card">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80" alt="Preview Gambar" loading="lazy" />
+        </div>
+        <div class="card-content">
+          <div>
+            <div class="card-header-meta">
+              <span class="card-source">angara.id</span>
+              <button class="more-options-btn" aria-label="Option"><i class="fas fa-ellipsis-v"></i></button>
+            </div>
+            <h3 class="card-title">Massage Bareng Pasangan Di Bali, Cara Sempurna Habiskan Weekend Romantis</h3>
+            <p class="card-excerpt">
+              Bali selalu punya cara ajaib untuk merajut kembali romansa yang mungkin sempat meredup akibat kesibukan kerja seminggu penuh...
+            </p>
+          </div>
+          <div>
+            <hr class="card-divider" />
+            <div class="card-footer-action">
+              <span>08 Agt 2026</span>
+              <button class="like-btn" aria-label="Like"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="#" class="horizontal-card">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80" alt="Preview Gambar" loading="lazy" />
+        </div>
+        <div class="card-content">
+          <div>
+            <div class="card-header-meta">
+              <span class="card-source">angara.id</span>
+              <button class="more-options-btn" aria-label="Option"><i class="fas fa-ellipsis-v"></i></button>
+            </div>
+            <h3 class="card-title">Lagi Bener — Menonton Ulang Film Klasik Di Usia Dewasa</h3>
+            <p class="card-excerpt">
+              Sebuah refleksi tentang menonton ulang film-film lama yang ternyata terasa berbeda di usia sekarang. Beda perspektif, beda makna yang didapat...
+            </p>
+          </div>
+          <div>
+            <hr class="card-divider" />
+            <div class="card-footer-action">
+              <span>01 Agt 2026</span>
+              <button class="like-btn" aria-label="Like"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- 3. BREAKING LINE -->
+  <hr class="section-divider" />
+
+  <!-- 4. ALL POSTS (JUDUL + TANGGAL ONLY) -->
+  <section class="all-posts-section">
+    <h2 class="section-title">Semua Artikel</h2>
+    <ul class="post-list">
+      <li class="post-item">
+        <a href="#" class="post-link">
+          <span class="post-link-title">Eksklusif Dari De Wave, Menangkan iPhone 17 Pro Max Terbaru</span>
+          <time class="post-link-date">11 Agt 2026</time>
+        </a>
+      </li>
+      <li class="post-item">
+        <a href="#" class="post-link">
+          <span class="post-link-title">Massage Bareng Pasangan Di Bali, Cara Sempurna Habiskan Weekend Romantis</span>
+          <time class="post-link-date">08 Agt 2026</time>
+        </a>
+      </li>
+      <li class="post-item">
+        <a href="#" class="post-link">
+          <span class="post-link-title">Lagi Bener — Menonton Ulang Film Klasik Di Usia Dewasa</span>
+          <time class="post-link-date">01 Agt 2026</time>
+        </a>
+      </li>
+      <li class="post-item">
+        <a href="#" class="post-link">
+          <span class="post-link-title">Kotak Surat — Surat terbuka untuk Diri Sendiri di Masa Depan</span>
+          <time class="post-link-date">28 Jul 2026</time>
+        </a>
+      </li>
+      <li class="post-item">
+        <a href="#" class="post-link">
+          <span class="post-link-title">Daily Life — Menemukan Ketenangan dalam Rutinitas Sederhana</span>
+          <time class="post-link-date">15 Jun 2026</time>
+        </a>
+      </li>
+      <li class="post-item">
+        <a href="#" class="post-link">
+          <span class="post-link-title">Jalan-Jalan — Menyusuri Gang Sempit dan Arsitektur Kota Tua</span>
+          <time class="post-link-date">02 Mei 2026</time>
+        </a>
+      </li>
+      <li class="post-item">
+        <a href="#" class="post-link">
+          <span class="post-link-title">Eseni Hobi — Ketika Kegemaran Mulai Menyita Waktu Luang</span>
+          <time class="post-link-date">19 Apr 2026</time>
+        </a>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<style>
+  /* FIXED FULLSCREEN BACKGROUND LAYER */
+  .blog-fixed-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        rgba(30, 28, 26, 0.65) 0%,
+        rgba(30, 28, 26, 0.75) 50%,
+        rgba(30, 28, 26, 0.85) 100%
+      ),
+      url("https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1600&q=80") center/cover no-repeat;
+    pointer-events: none;
+  }
+
+  .blog-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* HEADER BLOG */
+  .blog-header {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 130px 20px 36px; /* Space cukup untuk Navbar transparan di atas */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .blog-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff; /* Kontras terang untuk bg gelap */
+    line-height: 1.2;
+  }
+
+  .blog-header p {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  /* FEATURED SECTION */
+  .featured-section {
+    padding: 40px 0 20px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .featured-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* HORIZONTAL CARD (FIXED HEIGHT 230PX) */
+  .horizontal-card {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    height: 230px;
+    background: rgba(255, 255, 255, 0.95); /* Menggunakan latar terang dengan sedikit opasitas agar konten card bersih */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition, 0.25s ease);
+  }
+
+  .horizontal-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    background: #ffffff;
+  }
+
+  .card-image-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .horizontal-card:hover .card-image-wrap img {
+    transform: scale(1.03);
+  }
+
+  .card-content {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .card-header-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-muted, #7d7d7d);
+    margin-bottom: 8px;
+  }
+
+  .card-source {
+    font-weight: 500;
+    color: var(--text-muted, #7d7d7d);
+  }
+
+  .more-options-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted, #7d7d7d);
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-primary, #1e1e1e);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin-bottom: 12px;
+  }
+
+  .card-excerpt {
+    font-size: 0.88rem;
+    color: var(--text-muted, #7d7d7d);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .card-divider {
+    border: 0;
+    border-top: 1px solid var(--border-light, #f0ede7);
+    margin-bottom: 14px;
+  }
+
+  .card-footer-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-muted, #7d7d7d);
+  }
+
+  .like-btn {
+    background: none;
+    border: none;
+    color: #e57373;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: transform var(--transition, 0.25s ease);
+  }
+
+  .like-btn:hover {
+    transform: scale(1.2);
+  }
+
+  /* BREAKING LINE */
+  .section-divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 56px 0 40px;
+  }
+
+  /* ALL POSTS LIST */
+  .all-posts-section {
+    max-width: 900px;
+  }
+
+  .post-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .post-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 12px;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 8px;
+    transition: all var(--transition, 0.25s ease);
+  }
+
+  .post-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 20px;
+  }
+
+  .post-link-title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    padding-right: 20px;
+  }
+
+  .post-link:hover .post-link-title {
+    color: #f7d9b5; /* Accent gold/warm saat hover */
+  }
+
+  .post-link-date {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 860px) {
+    .horizontal-card {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .card-image-wrap {
+      height: 200px;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .blog-header {
+      padding-top: 100px;
+    }
+
+    .blog-header h1 {
+      font-size: 2rem;
+    }
+
+    .post-link {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .post-link-date {
+      font-size: 0.78rem;
+    }
+  }
+</style>

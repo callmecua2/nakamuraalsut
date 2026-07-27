@@ -1,0 +1,268 @@
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="/" class="nav-brand">
+      Nakamura Alam Sutera
+      <span>Holistik Jepang</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Beranda</a></li>
+      <li><a href="/treatments">Treatment</a></li>
+      <li><a href="/blog">Artikel</a></li>
+      <li><a href="/about">Tentang Kami</a></li>
+      <li>
+        <a href="/#contact" class="nav-cta">Booking Sekarang</a>
+      </li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 2rem;
+    transition: all var(--transition);
+    background: transparent;
+  }
+  .navbar.scrolled {
+    background: rgba(253, 252, 249, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    transition: height var(--transition);
+  }
+  .navbar.scrolled .navbar-inner {
+    height: 60px;
+  }
+  .nav-brand {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    transition: color var(--transition);
+    white-space: nowrap;
+  }
+  .navbar.scrolled .nav-brand {
+    color: var(--text-primary);
+  }
+  .nav-brand span {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.85rem;
+    display: block;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    transition: color var(--transition);
+    position: relative;
+  }
+  .navbar.scrolled .nav-links a {
+    color: var(--text-body);
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: currentColor;
+    transition: width var(--transition);
+    opacity: 0.6;
+  }
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  .nav-cta {
+    background: var(--accent-sage);
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.02em;
+    transition: all var(--transition) !important;
+    white-space: nowrap;
+  }
+  .nav-cta:hover {
+    background: var(--accent-sage-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(123, 141, 111, 0.3);
+  }
+  .nav-cta::after {
+    display: none !important;
+  }
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all var(--transition);
+  }
+  .navbar.scrolled .menu-toggle span {
+    background: var(--text-primary);
+  }
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+  }
+  .nav-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--surface);
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+      gap: 1.5rem;
+      box-shadow: var(--shadow-xl);
+      transition: right var(--transition);
+      z-index: 1000;
+    }
+    .nav-links.active {
+      right: 0;
+    }
+    .nav-links a {
+      color: var(--text-body) !important;
+      font-size: 1rem;
+    }
+    .nav-cta {
+      text-align: center;
+      display: block;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .navbar {
+      padding: 0 1.25rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .navbar-inner {
+      height: 60px;
+    }
+    .navbar.scrolled .navbar-inner {
+      height: 52px;
+    }
+    .nav-brand {
+      font-size: 1.1rem;
+    }
+    .nav-brand span {
+      font-size: 0.7rem;
+    }
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const navOverlay = document.getElementById("navOverlay");
+
+  function updateNavbar() {
+    if (window.scrollY > 60) {
+      navbar?.classList.add("scrolled");
+    } else {
+      navbar?.classList.remove("scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", updateNavbar, { passive: true });
+  updateNavbar();
+
+  function toggleMenu() {
+    menuToggle?.classList.toggle("active");
+    navLinks?.classList.toggle("active");
+    navOverlay?.classList.toggle("active");
+    document.body.style.overflow = navLinks?.classList.contains("active")
+      ? "hidden"
+      : "";
+  }
+
+  function closeMenu() {
+    menuToggle?.classList.remove("active");
+    navLinks?.classList.remove("active");
+    navOverlay?.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  menuToggle?.addEventListener("click", toggleMenu);
+  navOverlay?.addEventListener("click", closeMenu);
+
+  document.querySelectorAll("#navLinks a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) closeMenu();
+  });
+</script>

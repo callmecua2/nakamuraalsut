@@ -1,0 +1,250 @@
+---
+// src/layouts/BlogPost.astro
+import Layout from './Layout.astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string | ImageMetadata;
+}
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString('id-ID', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<Layout title={`${title} | Nakamura Journal`} description={description}>
+  <!-- Background Gelap Global Fixed -->
+  <div class="page-fixed-bg" aria-hidden="true"></div>
+
+  <!-- Pembungkus Utama (Menangani Jarak dari Navbar & Centering) -->
+  <main class="article-page-wrapper">
+    <!-- Kartu Putih Utama (Ukuran 2/4 layar di Desktop, Full di Mobile) -->
+    <article class="article-card glass-container">
+      
+      <!-- Navigasi Atas & Meta Tanggal -->
+      <div class="article-top-nav">
+        <a href="/blog" class="back-link">
+          <i class="fas fa-arrow-left"></i> Kembali ke Blog
+        </a>
+        {pubDate && (
+          <time datetime={pubDate.toISOString()} class="post-date">
+            {formatDate(pubDate)}
+          </time>
+        )}
+      </div>
+
+      <!-- Judul Utama Artikel -->
+      <h1 class="article-title">{title}</h1>
+
+      <!-- Ringkasan / Deskripsi -->
+      {description && <p class="article-description">{description}</p>}
+
+      <!-- Gambar Utama Artikel -->
+      {heroImage && (
+        <div class="hero-image-wrap">
+          {typeof heroImage === 'object' ? (
+            <Image src={heroImage} alt={title} class="hero-image" />
+          ) : (
+            <img src={heroImage} alt={title} class="hero-image" />
+          )}
+        </div>
+      )}
+
+      <hr class="card-divider" />
+
+      <!-- Isi Artikel Markdown / MDX -->
+      <div class="article-content">
+        <slot />
+      </div>
+
+    </article>
+  </main>
+</Layout>
+
+<style>
+  /* Pembungkus halaman dengan top-padding aman dari Navbar */
+  .article-page-wrapper {
+    padding: 140px 20px 80px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Kartu Utama: Kontras Terang, Centered, Lebar ~2/4 Layar Desktop */
+  .article-card {
+    width: 100%;
+    max-width: 760px; /* Menghasilkan proporsi ~2/4 layar desktop */
+    background: rgba(253, 252, 249, 0.98);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-lg, 20px);
+    padding: 48px;
+    box-shadow: var(--shadow-xl);
+    color: var(--text-primary, #1e1e1e);
+  }
+
+  .article-top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--accent-sage-dark, #5f7055);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color var(--transition, 0.25s ease);
+  }
+
+  .back-link:hover {
+    color: var(--accent-terracotta, #8C431F);
+  }
+
+  .post-date {
+    color: var(--text-muted, #7d7d7d);
+    font-weight: 500;
+  }
+
+  .article-title {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary, #1e1e1e);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .article-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-body, #4a4a4a);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    max-height: 420px;
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-divider {
+    border: 0;
+    border-top: 1px solid var(--border, #e8e4de);
+    margin: 32px 0;
+  }
+
+  /* Styling elemen Markdown/MDX di dalam <slot /> */
+  .article-content :global(p) {
+    font-size: 1.025rem;
+    line-height: 1.85;
+    color: var(--text-body, #4a4a4a);
+    margin-bottom: 1.5rem;
+  }
+
+  .article-content :global(h2) {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--text-primary, #1e1e1e);
+    margin: 2.25rem 0 1rem;
+    line-height: 1.35;
+  }
+
+  .article-content :global(h3) {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary, #1e1e1e);
+    margin: 1.75rem 0 0.75rem;
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin: 0 0 1.5rem 1.5rem;
+    color: var(--text-body, #4a4a4a);
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .article-content :global(blockquote) {
+    border-left: 3px solid var(--accent-sage, #7b8d6f);
+    padding: 12px 20px;
+    margin: 1.75rem 0;
+    background-color: var(--surface-alt, #f6f3ee);
+    border-radius: 0 var(--radius-sm, 6px) var(--radius-sm, 6px) 0;
+    font-style: italic;
+    color: var(--text-primary, #1e1e1e);
+  }
+
+  .article-content :global(blockquote p) {
+    margin-bottom: 0;
+  }
+
+  .article-content :global(a) {
+    color: var(--accent-sage-dark, #5f7055);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article-content :global(a:hover) {
+    color: var(--accent-terracotta, #8C431F);
+  }
+
+  .article-content :global(pre) {
+    padding: 20px;
+    border-radius: var(--radius-md, 12px);
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  /* Responsive Mobile View (Full Width) */
+  @media (max-width: 768px) {
+    .article-page-wrapper {
+      padding: 100px 12px 40px;
+    }
+
+    .article-card {
+      padding: 24px 18px;
+      max-width: 100%;
+      border-radius: var(--radius-md, 12px);
+    }
+
+    .article-title {
+      font-size: 1.75rem;
+    }
+
+    .hero-image-wrap {
+      max-height: 260px;
+    }
+  }
+</style>

@@ -1,0 +1,391 @@
+/* ==========================================================================
+   1. DESIGN TOKENS & VARIABLES
+   ========================================================================== */
+:root {
+  /* Colors - Backgrounds */
+  --bg: #fdfcf9;
+  --surface: #ffffff;
+  --surface-alt: #f6f3ee;
+  
+  /* Colors - Text */
+  --text-primary: #1e1e1e;
+  --text-body: #4a4a4a;
+  --text-muted: #7d7d7d;
+  
+  /* Colors - Accents */
+  --accent-sage: #7b8d6f;
+  --accent-sage-dark: #5f7055;
+  --accent-warm: #b8a088;
+  --accent-warm-light: #d9cbb8;
+  --accent-terracotta: #8C431F;
+  --accent-terracotta-hover: #733416;
+  
+  /* Colors - Badges & Borders */
+  --promo-badge: #d4956a;
+  --promo-badge-bg: #fdf2e9;
+  --border: #e8e4de;
+  --border-light: #f0ede7;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.1);
+  
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  
+  /* Transitions */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Poppins', 'Inter', 'Noto Sans', sans-serif;
+}
+
+/* ==========================================================================
+   2. RESET & BASE STYLES
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   3. SHARED BACKGROUNDS & LAYOUT UTILITIES
+   ========================================================================== */
+/* Background fixed untuk halaman sub-page (Blog, About, Treatment) */
+.page-fixed-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+      180deg,
+      rgba(30, 28, 26, 0.65) 0%,
+      rgba(30, 28, 26, 0.75) 50%,
+      rgba(30, 28, 26, 0.85) 100%
+    ),
+    url("../assets/images/nkmr/_MEM2124.JPG.webp") center/cover no-repeat;
+  pointer-events: none;
+}
+
+.container-custom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Containers dengan efek Glassmorphism */
+.glass-container {
+  background: rgba(253, 252, 249, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   4. TYPOGRAPHY & SECTION HEADERS
+   ========================================================================== */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.page-header {
+  padding: 130px 24px 40px;
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.page-header p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-sage);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.section-desc {
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 550px;
+  margin: 0 auto 3rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   5. BUTTONS & BADGES
+   ========================================================================== */
+.btn-primary {
+  display: inline-block;
+  background: var(--accent-sage);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: all var(--transition);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--accent-sage-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(123, 141, 111, 0.35);
+}
+
+.btn-terracotta {
+  display: inline-block;
+  background-color: var(--accent-terracotta);
+  color: #ffffff;
+  padding: 12px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all var(--transition);
+  box-shadow: 0 4px 12px rgba(140, 67, 31, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-terracotta:hover {
+  background-color: var(--accent-terracotta-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(140, 67, 31, 0.3);
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  transition: all var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   6. CONTACT SECTION (REUSABLE STRUCTURE)
+   ========================================================================== */
+.contact-section {
+  padding: 80px 24px;
+  background-color: var(--surface);
+  border-top: 1px solid var(--border-light);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact-info h3 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.contact-detail {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-body);
+}
+
+.contact-detail .icon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+.contact-detail a {
+  color: var(--accent-sage);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.contact-detail a:hover {
+  color: var(--accent-sage-dark);
+}
+
+.map-container {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  height: 350px;
+  width: 100%;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-body);
+  transition: all var(--transition);
+  font-size: 0.9rem;
+  border: 1px solid var(--border-light);
+}
+
+.social-link:hover {
+  background: var(--accent-sage);
+  color: #fff;
+  border-color: var(--accent-sage);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   7. ANIMATIONS & REVEAL
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   8. GLOBAL RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 900px) {
+  .page-header {
+    padding-top: 100px;
+  }
+
+  .page-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .map-container {
+    height: 280px;
+  }
+}
+
+@media (max-width: 580px) {
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .page-header p {
+    font-size: 0.9rem;
+  }
+
+  .section-heading {
+    font-size: 1.8rem;
+  }
+
+  .btn-primary,
+  .btn-terracotta,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+}

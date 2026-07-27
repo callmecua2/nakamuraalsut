@@ -1,0 +1,480 @@
+---
+// src/components/pages/Treatment.astro
+
+const treatments = [
+  {
+    title: "Terapi Seluruh Tubuh ( 120 menit )",
+    desc: "Seluruh bagian tubuh anda akan diterapi dengan gabungan akupresure, seitai. Tambahan akupresure wajahpun akan membuat anda mencapai Deep Relaxation dan Deep Sleep. Perbaikan sel –sel tubuh yang rusak, organ dalam dan ototpun akan terjadi. Penyegaran dan pencerahan fisik dan jiwapun akan muncul. Self healing pun akan dapat terjadi lewat terapi ini!",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20booking%20Terapi%20Seluruh%20Tubuh"
+  },
+  {
+    title: "Mixed Treatment ( 90 menit )",
+    desc: "Terapi gabungan ini meliputi Refleksi Kaki, Akupresure Tangan, Seitai Leher Pundak, Seitai Punggung yang di padu sehingga akan menyehatkan dan merelakskan seluruh tubuh dan jiwa anda. Kelelahan fisik dan mentalpun akan dihapuskan lewat terapi ini. Banyak keluhan fisik yang dapat disembuhkan lewat terapi ini",
+    image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80",
+    link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20booking%20Mixed%20Treatment"
+  },
+  {
+    title: "Seitai Jepang ( 60 menit )",
+    desc: "Terapi difokuskan pada daerah sekitar tulang punggung, pundak, dan kaki dengan tekanan lembut menggunakan tangan untuk menyelaraskan kembali struktur tulang belakang dan meredakan ketegangan otot kronis.",
+    image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80",
+    link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20booking%20Seitai%20Jepang"
+  },
+  {
+    title: "Akupresur Wajah & Kepala ( 45 menit )",
+    desc: "Menstimulasi titik-titik meridian di area wajah dan kepala untuk melancarkan sirkulasi darah, meredakan migrain, serta memberikan rasa rileks dan kesegaran instan pada area mata dan pikiran.",
+    image: "https://images.unsplash.com/photo-1512290900673-04e8d3886b6a?w=800&q=80",
+    link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20booking%20Akupresur%20Wajah"
+  },
+  {
+    title: "Refleksi Kaki Holistik ( 60 menit )",
+    desc: "Penekanan pada titik-titik refleksi zona kaki yang terhubung langsung dengan organ internal tubuh untuk merangsang daya sembuh alami dan mengatasi kelelahan akibat aktivitas tinggi.",
+    image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80",
+    link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20booking%20Refleksi%20Kaki"
+  },
+  {
+    title: "Seitai Leher & Pundak ( 30 menit )",
+    desc: "Terapi fungsional cepat yang ditujukan khusus bagi pekerja kantoran atau pengemudi untuk melemaskan otot kaku di area leher, bahu, dan punggung atas secara efektif.",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20booking%20Seitai%20Leher%20Pundak"
+  }
+];
+---
+
+<!-- FIXED FULLSCREEN BACKGROUND LAYER -->
+<div class="treatment-fixed-bg" aria-hidden="true"></div>
+
+<!-- HEADER SECTION -->
+<header class="treatment-header">
+  <div class="treatment-header-inner">
+    <h1>Treatment Kami</h1>
+    <div class="header-description">
+      <p>
+        Selamat datang di Nakamura Alam Sutera, sebuah oasis di mana waktu melambat dan perjalanan menuju pembaruan diri dimulai.
+      </p>
+      <p>
+        Masuki ruang di mana pencahayaan lembut, aromaterapi yang menenangkan, dan alunan melodi lembut berpadu untuk melepaskan Anda dari beban dunia luar. Suasana tenang yang kami ciptakan adalah langkah pertama Anda menuju relaksasi yang mendalam. Di tangan terapis ahli kami, Anda akan merasakan seni penyembuhan holistik yang tak hanya meredakan ketegangan otot tetapi juga memulihkan keseimbangan jiwa dan raga.
+      </p>
+      <p>
+        Dengan dedikasi penuh untuk kesejahteraan Anda, Nakamura Alam Sutera adalah tempat sentuhan seorang ahli bertemu dengan ketenangan sejati untuk pemulihan diri yang sempurna.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- TREATMENT GRID SECTION (SCROLLABLE CONTAINER) -->
+<section class="treatment-grid-section">
+  <div class="treatment-grid-container">
+    <div class="treatment-scroll-box">
+      <div class="treatment-cards-grid">
+        {treatments.map((item) => (
+          <div class="treatment-box">
+            <div class="treatment-img-wrap">
+              <img src={item.image} alt={item.title} loading="lazy" />
+            </div>
+            <div class="treatment-box-body">
+              <h2 class="treatment-title">{item.title}</h2>
+              <p class="treatment-desc">{item.desc}</p>
+              <a href={item.link} target="_blank" rel="noopener" class="btn-booking">
+                Booking Sekarang
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & MAP SECTION -->
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+    <p class="section-label">Hubungi Kami</p>
+    <h2 class="section-heading">Kontak & Lokasi</h2>
+    <p class="section-desc">
+      Kunjungi kami di Alam Sutera atau hubungi langsung untuk reservasi. Kami siap menyambut Anda dan keluarga.
+    </p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Nakamura Alam Sutera</h3>
+        <div class="contact-detail">
+          <span class="icon">📍</span>
+          <span>
+            ALAM SUTERA, Jl. Jalur Sutera No.2 Kav.20A, RT.002/RW.015, Kunciran, Kec. Pinang, Kota Tangerang, Banten 15144
+          </span>
+        </div>
+        <div class="contact-detail">
+          <span class="icon">📞</span>
+          <a href="http://wa.me/+6285778899198">085778899198</a>
+        </div>
+        <div class="contact-detail">
+          <span class="icon">✉️</span>
+          <a href="mailto:nalsut20a@gmail.com">info@nakamuraalamsutera.com</a>
+        </div>
+        <div class="contact-detail">
+          <span class="icon">🕐</span>
+          <span>
+            Setiap Hari: 10:00 – 22:00<br />
+            <small style="color: var(--promo-badge, #d4956a);">
+              Happy Hour: 10:00 – 15:00 (Diskon 30% khusus non member)
+            </small>
+          </span>
+        </div>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">📷</a>
+          <a href="https://wa.me/6285778899198" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">💬</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">📘</a>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7932.56619862645!2d106.6620185!3d-6.2263557!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb8d91a60f6b%3A0x88c51e7cca4f26d!2sNakamura%20Alam%20Sutera!5e0!3m2!1sid!2sid!4v1784123317819!5m2!1sid!2sid"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* FIXED FULLSCREEN BACKGROUND LAYER */
+  .treatment-fixed-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        rgba(30, 28, 26, 0.65) 0%,
+        rgba(30, 28, 26, 0.75) 50%,
+        rgba(30, 28, 26, 0.85) 100%
+      ),
+      url("../../assets/images/nkmr/_MEM2081.JPG.webp") center/cover no-repeat;
+    pointer-events: none;
+  }
+
+  /* HEADER SECTION */
+  .treatment-header {
+    padding: 130px 24px 40px;
+    text-align: center;
+  }
+
+  .treatment-header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .treatment-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .header-description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 0.98rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    text-align: justify;
+    text-align-last: center;
+  }
+
+  /* TREATMENT GRID & SCROLL CONTAINER */
+  .treatment-grid-section {
+    padding: 20px 24px 80px;
+  }
+
+  .treatment-grid-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .treatment-scroll-box {
+    max-height: 1120px;
+    overflow-y: auto;
+    padding: 32px;
+    background: rgba(253, 252, 249, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-warm, #b8a088) transparent;
+  }
+
+  .treatment-scroll-box::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .treatment-scroll-box::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+  }
+
+  .treatment-scroll-box::-webkit-scrollbar-thumb {
+    background: var(--accent-warm, #b8a088);
+    border-radius: 10px;
+  }
+
+  .treatment-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+
+  .treatment-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .treatment-img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #f0ede7;
+  }
+
+  .treatment-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .treatment-box:hover .treatment-img-wrap img {
+    transform: scale(1.03);
+  }
+
+  .treatment-box-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    width: 100%;
+  }
+
+  .treatment-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #8C431F;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .treatment-desc {
+    font-size: 0.9rem;
+    color: #5a5a5a;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .btn-booking {
+    display: inline-block;
+    background-color: #8C431F;
+    color: #ffffff;
+    padding: 12px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(140, 67, 31, 0.2);
+  }
+
+  .btn-booking:hover {
+    background-color: #733416;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(140, 67, 31, 0.3);
+  }
+
+  /* CONTACT SECTION */
+  .contact-section {
+    padding: 80px 24px;
+    background-color: var(--surface, #ffffff);
+    border-top: 1px solid var(--border-light, #f0ede7);
+  }
+
+  .contact-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-sage, #7b8d6f);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--text-primary, #1e1e1e);
+    text-align: center;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-desc {
+    text-align: center;
+    color: var(--text-muted, #7d7d7d);
+    max-width: 550px;
+    margin: 0 auto 3rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-primary, #1e1e1e);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .contact-detail {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-body, #4a4a4a);
+  }
+
+  .contact-detail .icon {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    margin-top: 2px;
+  }
+
+  .contact-detail a {
+    color: var(--accent-sage, #7b8d6f);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .contact-detail a:hover {
+    color: var(--accent-sage-dark, #5f7055);
+  }
+
+  .map-container {
+    border-radius: var(--radius-lg, 20px);
+    overflow: hidden;
+    box-shadow: var(--shadow-md, 0 4px 20px rgba(0, 0, 0, 0.06));
+    border: 1px solid var(--border-light, #f0ede7);
+    height: 350px;
+    width: 100%;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--surface-alt, #f6f3ee);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-body, #4a4a4a);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-light, #f0ede7);
+  }
+
+  .social-link:hover {
+    background: var(--accent-sage, #7b8d6f);
+    color: #fff;
+    border-color: var(--accent-sage, #7b8d6f);
+    transform: translateY(-2px);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 860px) {
+    .treatment-header {
+      padding-top: 100px;
+    }
+
+    .treatment-header h1 {
+      font-size: 2.2rem;
+    }
+
+    .treatment-scroll-box {
+      padding: 20px;
+      max-height: 1200px;
+    }
+
+    .treatment-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .map-container {
+      height: 280px;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .treatment-header h1 {
+      font-size: 1.8rem;
+    }
+
+    .header-description {
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .treatment-title {
+      font-size: 1.15rem;
+    }
+
+    .btn-booking {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
