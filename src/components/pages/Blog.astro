@@ -3,16 +3,22 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 
-// 1. Ambil semua postingan dari folder src/content/blog/ dan urutkan berdasarkan tanggal terbaru
-const allPosts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+// 1. Ambil semua postingan dan convert tanggal ke milidetik secara aman
+const allPosts = (await getCollection("blog")).sort((a, b) => {
+  const dateA = new Date(a.data.pubDate).getTime();
+  const dateB = new Date(b.data.pubDate).getTime();
+  
+  // Jika tanggal invalid, tempatkan di paling bawah
+  if (isNaN(dateA)) return 1;
+  if (isNaN(dateB)) return -1;
 
-// 2. Ambil 3 postingan terbaru untuk Featured Section
+  return dateB - dateA; // Urutkan dari tanggal terbaru ke tertua
+});
+
+// 2. Ambil 3 artikel paling baru
 const featuredPosts = allPosts.slice(0, 3);
 
-// Helper format tanggal (cth: 08 Agt 2026)
-function formatDate(date: Date) {
+function formatDate(date: Date | string) {
   return new Date(date).toLocaleDateString("id-ID", {
     day: "2-digit",
     month: "short",
@@ -26,8 +32,8 @@ function formatDate(date: Date) {
 
 <!-- 1. JUDUL ARTIKEL DI BAWAH NAVBAR -->
 <header class="blog-header">
-  <h1>Blog &amp; Jurnal</h1>
-  <p>Catatan harian, refleksi holistik, dan obrolan seputar kehidupan.</p>
+  <h1>Artikel</h1>
+  <!-- <p>Catatan harian, refleksi holistik, dan obrolan seputar kehidupan.</p> -->
 </header>
 
 <main class="blog-container">
@@ -316,6 +322,31 @@ function formatDate(date: Date) {
     list-style: none;
     display: flex;
     flex-direction: column;
+    max-height: 400px; /* Batasi tinggi maksimum area list */
+    overflow-y: auto;  /* Aktifkan scroll internal jika item melebihi max-height */
+    padding-right: 12px; /* Jarak aman antara teks dan batang scrollbar */
+
+    /* Scrollbar minimalis untuk Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  /* Custom Scrollbar untuk Chrome, Edge, Safari */
+  .post-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .post-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .post-list::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+  }
+
+  .post-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
   .post-item {

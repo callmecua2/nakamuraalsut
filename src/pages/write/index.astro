@@ -1,0 +1,392 @@
+---
+// Layout bawaan Astro atau buat tanpa layout luar agar full-screen
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editor Post - Blogspot Style</title>
+  <!-- Quill CSS (Theme Snow) -->
+</head>
+<body>
+  <form id="blog-form">
+    <!-- Top Bar Navigation -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <a href="/blog" class="btn-back" title="Kembali">&larr;</a>
+        <span class="editor-title">Posting Baru</span>
+      </div>
+      <div class="topbar-right">
+        <button type="button" id="btn-draft" class="btn btn-secondary">Simpan Draft</button>
+        <button type="button" id="btn-preview" class="btn btn-outline">Pratinjau</button>
+        <button type="submit" id="btn-publish" class="btn btn-primary">Publikasikan</button>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="editor-container">
+      <!-- Left Column: Title & Text Editor -->
+      <section class="editor-main">
+        <input 
+          type="text" 
+          id="post-title" 
+          name="title" 
+          placeholder="Judul postingan" 
+          required 
+          autocomplete="off"
+        />
+        
+        <!-- Quill Editor Container -->
+        <div class="quill-wrapper">
+          <div id="editor"></div>
+        </div>
+      </section>
+
+      <!-- Right Column: Sidebar Settings (Blogger Style) -->
+      <aside class="editor-sidebar">
+        <!-- Section: Label / Tags -->
+        <details class="sidebar-item" open>
+          <summary>Label</summary>
+          <div class="sidebar-content">
+            <input type="text" name="tags" placeholder="Pisahkan dengan koma (cth: Teknologi, Astro)" />
+            <small>Dipisahkan oleh koma</small>
+          </div>
+        </details>
+
+        <!-- Section: Tanggal Dipublikasikan -->
+        <details class="sidebar-item">
+          <summary>Dipublikasikan pada</summary>
+          <div class="sidebar-content">
+            <label class="radio-label">
+              <input type="radio" name="date_type" value="auto" checked /> Otomatis
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="date_type" value="custom" /> Tetapkan tanggal
+            </label>
+            <input type="datetime-local" id="custom-date" name="published_at" />
+          </div>
+        </details>
+
+        <!-- Section: Tautan Permanen (Permalink) -->
+        <details class="sidebar-item">
+          <summary>Tautan Permanen</summary>
+          <div class="sidebar-content">
+            <label class="radio-label">
+              <input type="radio" name="slug_type" value="auto" checked /> Tautan permanen otomatis
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="slug_type" value="custom" /> Tautan permanen khusus
+            </label>
+            <input type="text" name="slug" placeholder="judul-post-khusus" />
+          </div>
+        </details>
+
+        <!-- Section: Lokasi -->
+        <details class="sidebar-item">
+          <summary>Lokasi</summary>
+          <div class="sidebar-content">
+            <input type="text" name="location" placeholder="Tambahkan lokasi" />
+          </div>
+        </details>
+
+        <!-- Section: Opsi Komentar -->
+        <details class="sidebar-item">
+          <summary>Opsi</summary>
+          <div class="sidebar-content">
+            <p class="section-label">Komentar Pembaca</p>
+            <label class="radio-label">
+              <input type="radio" name="comments" value="allow" checked /> Izinkan
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="comments" value="dont_allow_show" /> Jangan izinkan, tampilkan yang ada
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="comments" value="dont_allow_hide" /> Jangan izinkan, sembunyikan yang ada
+            </label>
+          </div>
+        </details>
+      </aside>
+    </main>
+  </form>
+
+  <!-- Quill JS Core CDN -->
+  
+
+  <!-- Script Inisialisasi Editor & Data Extraction -->
+  <!-- Hapus tag <link href="...quill.snow.css"> dari <head> -->
+<!-- Hapus tag <script src="...quill.js"></script> -->
+
+<script>
+  import Quill from 'quill';
+  import 'quill/dist/quill.snow.css'; // Import CSS langsung di skrip client
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const quill = new Quill('#editor', {
+      theme: 'snow',
+      placeholder: 'Tulis artikel Anda di sini...',
+      modules: {
+        toolbar: [
+          [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'script': 'sub'}, { 'script': 'super' }],
+          [{ 'header': 1 }, { 'header': 2 }, 'blockquote', 'code-block'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
+          [{ 'direction': 'rtl' }, { 'align': [] }],
+          ['link', 'image', 'video'],
+          ['clean']
+        ]
+      }
+    });
+
+    const form = document.getElementById('blog-form') as HTMLFormElement;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const payload = {
+        title: formData.get('title'),
+        content: quill.getSemanticHTML(),
+        delta: JSON.stringify(quill.getContents()),
+        tags: formData.get('tags'),
+        publishedAt: formData.get('published_at'),
+        slug: formData.get('slug'),
+        comments: formData.get('comments')
+      };
+
+      console.log('Payload Data:', payload);
+    });
+  });
+</script>
+
+  <!-- Custom Styling Bergaya Blogger UI -->
+  <style>
+    :root {
+      --bg-main: #f8f9fa;
+      --border-color: #dadce0;
+      --primary-color: #1a73e8;
+      --text-color: #3c4043;
+      --sidebar-width: 300px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-color);
+    }
+
+    /* Topbar Layout */
+    .topbar {
+      height: 60px;
+      background: #fff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-back {
+      text-decoration: none;
+      font-size: 20px;
+      color: #5f6368;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .btn-back:hover {
+      background-color: #f1f3f4;
+    }
+
+    .editor-title {
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    .topbar-right {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #1557b0;
+    }
+
+    .btn-secondary {
+      background-color: #f1f3f4;
+      color: #3c4043;
+    }
+
+    .btn-outline {
+      border-color: var(--border-color);
+      background: #fff;
+      color: #3c4043;
+    }
+
+    /* Main Container (2 Columns) */
+    .editor-container {
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-width);
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Left Column: Editor */
+    .editor-main {
+      padding: 30px 40px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #post-title {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #e0e0e0;
+      font-size: 28px;
+      font-weight: 400;
+      padding: 8px 0;
+      margin-bottom: 20px;
+      outline: none;
+    }
+
+    #post-title:focus {
+      border-bottom-color: var(--primary-color);
+    }
+
+    /* Quill Adjustments */
+    .quill-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    :global(.ql-toolbar.ql-snow) {
+      border-color: var(--border-color) !important;
+      border-radius: 4px 4px 0 0;
+      position: sticky;
+      top: 60px;
+      background: #fff;
+      z-index: 10;
+    }
+
+    :global(.ql-container.ql-snow) {
+      border-color: var(--border-color) !important;
+      border-radius: 0 0 4px 4px;
+      min-height: 450px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Right Column: Sidebar Settings */
+    .editor-sidebar {
+      background: var(--bg-main);
+      border-left: 1px solid var(--border-color);
+      padding: 12px;
+    }
+
+    .sidebar-item {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .sidebar-item summary {
+      padding: 12px 16px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      color: #202124;
+    }
+
+    .sidebar-item summary:hover {
+      background-color: #f8f9fa;
+    }
+
+    .sidebar-content {
+      padding: 12px 16px 16px;
+      border-top: 1px solid #f1f3f4;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .sidebar-content input[type="text"],
+    .sidebar-content input[type="datetime-local"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .sidebar-content small {
+      color: #70757a;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: #3c4043;
+    }
+
+    .section-label {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .editor-container {
+        grid-template-columns: 1fr;
+      }
+
+      .editor-sidebar {
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+      }
+    }
+  </style>
+</body>
+</html>

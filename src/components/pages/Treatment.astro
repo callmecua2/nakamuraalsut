@@ -1,89 +1,97 @@
 ---
 // src/components/pages/Treatment.astro
 
+import TST from "../../assets/images/nkmr/_MEM2152.JPG.webp";
+import MT from "../../assets/images/nkmr/_MEM2150.JPG.webp";
+import SJ from "../../assets/images/nkmr/_MEM2153.JPG.webp";
+import terapiZona from "../../assets/images/nkmr/terapiZona.webp";
+import fs from "../../assets/images/nkmr/fs.webp";
+import lumbar from "../../assets/images/nkmr/lumbar.webp";
+import anak from "../../assets/images/nkmr/anak.webp";
+import knee from "../../assets/images/nkmr/knee.webp";
+import meridian from "../../assets/images/nkmr/meridian.webp";
+import hansa from "../../assets/images/nkmr/hansa.webp";
+import onthai from "../../assets/images/nkmr/onthai.webp";
+import kerokan from "../../assets/images/nkmr/kerokan.webp";
+
+
+
+
+
+
+import { Image } from "astro:assets";
+
 const treatments = [
   {
     title: "Terapi Seluruh Tubuh ( 120 menit )",
     desc: "Seluruh bagian tubuh anda akan diterapi dengan gabungan akupresure, seitai. Tambahan akupresure wajahpun akan membuat anda mencapai Deep Relaxation dan Deep Sleep. Perbaikan sel – sel tubuh yang rusak, organ dalam dan ototpun akan terjadi. Penyegaran dan pencerahan fisik dan jiwapun akan muncul. Self healing pun akan dapat terjadi lewat terapi ini!",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: TST,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Terapi%20Seluruh%20Tubuh",
   },
   {
     title: "Mixed Treatment ( 90 menit )",
     desc: "Terapi gabungan ini meliputi Refleksi Kaki, Akupresure Tangan, Seitai Leher Pundak, Seitai Punggung yang di padu sehingga akan menyehatkan dan merelakskan seluruh tubuh dan jiwa anda. Kelelahan fisik dan mentalpun akan dihapuskan lewat terapi ini. Banyak keluhan fisik yang dapat disembuhkan lewat terapi ini",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: MT,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Mixed%20Treatment",
   },
   {
     title: "Seitai Jepang ( 60 menit )",
     desc: "Terapi difokuskan pada daerah sekitar tulang punggung, pundak, dan kaki dengan tekanan lembut menggunakan tangan. Terapi dimulai dari sekitar tulang punggung atas, punggung bawah (boyok), leher untuk menghilangkan kekakuan, pegal dan linu disekitarnya. Terapi ini dapat menyegarkan tubuh dan jiwa Anda, meningkatkan vitalitas dan imunitas, menghilangkan sakit boyok, pundak dan leher kaku.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: SJ,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Seitai%20Jepang",
   },
   {
     title: "Terapi Zona ( 60 menit )",
     desc: "Terapi refleksi kaki ini dilakukan dengan penekanan pada sekitar telapak kaki untuk meningkatkan kesehatan organ-organ dalam seperti lever, ginjal, lambung dsb. Terapi ini dapat untuk menghilangkan migraine, sakit kepala, menstabilkan tekan darah, sulit tidur, permasalahan seksual, serta memperlancar peredaran darah di seluruh tubuh.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: terapiZona,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Terapi%20Zona",
   },
   {
     title: "Frozen Shoulder ( 60 menit )",
     desc: "Terapi difokuskan pada daerah sekitar pundak, punggung, leher untuk menghilangkan nyeri dan ketegangan otot pada sekitar bahu yang disebabkan pertambahan usia, jenis pekerjaan, imobilitas karena faktor cedera dan pasca operasi dan penyakit sistemik, seperti: diabetes, hipertiroidisme, hipotiroidisme, penyakit kardiovaskular, tuberculosis dan Penyakit Parkinson. Manfaat lain untuk memperbaiki sirkulasi darah dan permukaan metabolisme setempat, melemaskan otot otot yang kejang, dan melepaskan perlengketan antar otot kapsuler. Sangat cocok untuk para pekerja kantor atau yang duduk lama didepan komputer",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: fs,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Frozen%20Shoulder",
   },
   {
     title: "Lumbar Care Treatment ( 60 menit )",
     desc: "Terapi ini difokuskan pada bagian pinggang, kaki dan lutut. Terapi ini sangat cocok bagi pasien yang mengalami nyeri pinggang karena keseleo atau ketegangan pada otot dan jaringan lunak dari belakang maupun terlalu banyak aktivitas atau penggunaan otot-otot punggung yang menyebabkan rasa sakit serta faktor bertambahnya usia. Cocok untuk Anda yang bekerja di luar kantor, lapangan, olahragawan, dan banyak berdiri.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: lumbar,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Lumbar%20Care%20Treatment",
   },
   {
     title: "Knee Care Treatment ( 60 menit )",
     desc: "Bermanfaat untuk keluhan yang diakibatkan karena kekakuan dan rasa nyeri dilutut yang disebabkan karena trauma, faktor kelainan anatomi, faktor pekerjaan fisik yang terlalu berat bertumpu pada lutut serta kebiasan olahraga. Treatment ini bertujuan untuk pengendalian rasa sakit, memperbaiki fungsi sendi yang terserang dan menghambat penyakit supaya tidak menjadi lebih parah dan agar penderita dapat melakukan aktivitas optimal dan tidak tergantung pada orang lain. Lutut Anda akan terbebas dari rasa sakit dan mampu bergerak secara lebih bebas.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: knee,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Knee%20Care%20Treatment",
   },
   {
     title: "Akupresur Anak ( 60 menit )",
     desc: "Sangat cocok untuk Anak usia 3 s.d. 10 tahun supaya meningkatkan konsentrasi, daya ingat, kemampuan belajar, menstabilkan nafsu makan, & menyenyakkan tidur. Terapi dilakukan secara lembut dari bagian kepala, pundak, tangan dan punggung sehingga anak bisa tertidur nyeyak.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: anak,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Akupresur%20Anak",
   },
   {
     title: "Meridian Massaji",
     desc: "Rasakan keajaiban Meridian Masaji, terapi pijat eksklusif yang dirancang untuk menyelaraskan energi tubuh Anda melalui pijatan mendalam pada jalur meridian. Dengan sentuhan lembut namun efektif, Meridian Masaji membantu melancarkan aliran energi, melepaskan ketegangan, dan meningkatkan kesehatan secara holistik serta jalan menuju kesehatan yang sempurna dan relaksasi yang lebih dalam.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: meridian,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Meridian%20Massaji",
   },
   {
     title: "Hansa Tsubo",
     desc: "Perpaduan Terapi Zona dan Meridian Massaji ini menghadirkan harmoni aliran energi dan relaksasi mendalam, dimulai dari telapak kaki hingga ke seluruh tubuh.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: hansa,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Hansa%20Tsubo",
   },
   {
     title: "On-Tai-Massaji",
     desc: "Sentuhan tradisional kerokan yang membebaskan tubuh dari angin dan meridian massaji yang melancarkan energi, bersatu dalam terapi yang menghangatkan, menyegarkan, dan menyeimbangkan dari luar hingga ke dalam.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: onthai,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20On-Tai-Massaji",
   },
   {
     title: "Kerokan",
     desc: "Kerokan merupakan salah satu metode pengobatan tradisional untuk menyembuhkan masuk angin. Metode ini sudah digunakan sejak zaman raja-raja Nusantara karena murah, mudah, dan efektif untuk dipraktikkan.",
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: kerokan,
     link: "https://wa.me/6285778899198?text=Halo%20Nakamura%20Alam%20Sutera%2C%20saya%20ingin%20bertanya%20lebih%20lanjut%20tentang%20Kerokan",
   },
 ];
@@ -127,7 +135,7 @@ const treatments = [
           treatments.map((item) => (
             <div class="treatment-box">
               <div class="treatment-img-wrap">
-                <img src={item.image} alt={item.title} loading="lazy" />
+                <Image src={item.image} alt={item.title} loading="lazy" />
               </div>
               <div class="treatment-box-body">
                 <h2 class="treatment-title">{item.title}</h2>
