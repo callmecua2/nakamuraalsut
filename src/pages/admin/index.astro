@@ -1,0 +1,11 @@
+---
+// src/pages/admin/index.astro
+export const prerender = false; // WAJIB di sini, bukan di komponen Login
+
+import Layout from "../../layouts/Layout.astro";
+import Login from "../../components/pages/Login.astro";
+---
+
+<Layout title="Masuk Akun | Nakamura Alam Sutera">
+  <Login />
+</Layout>

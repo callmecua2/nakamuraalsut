@@ -1,0 +1,218 @@
+---
+// src/components/pages/Login.astro
+export const prerender = false; // WAJIB kalau output: "hybrid" di astro.config
+
+import { comparePassword } from "../../encrypt/enkripsi";
+
+let errorMessage = "";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const username = data.get("email")?.toString();
+    const password = data.get("password")?.toString();
+
+    const userNameEnv = "nakamuraalsut"
+    const hashedPasswordEnv = "$2b$12$wOVqo.44hg8okWJoV8UWe.wl.1GDmpQSM9YZnP7shrn10F0eYNxHK"
+    const tokenEnv = "verylongpasswordfortoken"
+
+    console.log(userNameEnv)
+    console.log(hashedPasswordEnv)
+    console.log(tokenEnv)
+
+    // 1. Validasi Environment Variables
+    if (!userNameEnv || !hashedPasswordEnv || !tokenEnv) {
+      throw new Error(
+        "Konfigurasi environment variable (.env) belum lengkap di server.",
+      );
+    }
+
+    // 2. Validasi Input Form
+    if (!username || !password) {
+      errorMessage = "Username dan password wajib diisi.";
+    } else {
+      const isMatch = await comparePassword(password, hashedPasswordEnv);
+
+      if (username !== userNameEnv || !isMatch) {
+        errorMessage = "Username atau password salah.";
+      } else {
+        // Set cookie auth
+        Astro.cookies.set("auth_login", tokenEnv, {
+          maxAge: 60 * 60,
+          path: "/",
+          httpOnly: true,
+          secure: import.meta.env.PROD,
+          sameSite: "lax",
+        });
+
+        // PENTING: form submit biasa butuh redirect, bukan JSON response
+        return Astro.redirect("/admin/edit", 302);
+      }
+    }
+  } catch (error) {
+    // Log error asli ke terminal server supaya bisa didebug
+    console.error("Login error:", error);
+    errorMessage = "Terjadi kesalahan internal pada server.";
+  }
+}
+---
+
+<main class="login-viewport">
+  <div class="login-card glass-container">
+    <div class="login-header">
+      <h1 class="login-title">Masuk Akun</h1>
+      <p class="login-subtitle">Silakan masuk untuk mengakses layanan Anda</p>
+    </div>
+
+    {errorMessage && <div class="error-box">{errorMessage}</div>}
+
+    <form class="login-form" method="POST">
+      <div class="form-group">
+        <label for="email">Email / Username</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="nama@email.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Kata Sandi</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="••••••••"
+          required
+        />
+      </div>
+
+      <div class="form-actions">
+        <label class="remember-me">
+          <input type="checkbox" name="remember" />
+          <span>Ingat saya</span>
+        </label>
+        <a href="#" class="forgot-link">Lupa kata sandi?</a>
+      </div>
+
+      <button type="submit" class="btn-primary btn-submit">Masuk</button>
+    </form>
+  </div>
+</main>
+
+<style>
+  .login-viewport {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 130px 20px 60px;
+    width: 100%;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 32px;
+    border-radius: var(--radius-lg, 20px);
+    background: rgba(253, 252, 249, 0.96);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .login-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .login-title {
+    font-family: var(--font-serif, "Playfair Display", serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary, #1e1e1e);
+    margin-bottom: 8px;
+  }
+
+  .login-subtitle {
+    font-size: 0.88rem;
+    color: var(--text-muted, #7d7d7d);
+    font-weight: 300;
+  }
+
+  .error-box {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm, 6px);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary, #1e1e1e);
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--border, #e8e4de);
+    background: var(--surface, #ffffff);
+    color: var(--text-primary, #1e1e1e);
+    font-family: var(--font-sans);
+    font-size: 0.925rem;
+    outline: none;
+  }
+
+  .form-group input:focus {
+    border-color: var(--accent-sage, #7b8d6f);
+    box-shadow: 0 0 0 3px rgba(123, 141, 111, 0.15);
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.825rem;
+  }
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--text-body, #4a4a4a);
+  }
+
+  .forgot-link {
+    color: var(--accent-sage-dark, #5f7055);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px;
+    text-align: center;
+  }
+</style>
