@@ -1,6 +1,13 @@
 ---
 // src/components/pages/Home.astro (atau komponen halaman utama)
 
+import { Image } from 'astro:assets';
+import TST from "../../assets/images/nkmr/_MEM2152.JPG.webp"
+import MT from "../../assets/images/nkmr/_MEM2150.JPG.webp"
+import SJ from "../../assets/images/nkmr/_MEM2153.JPG.webp"
+import terapiZona from "../../assets/images/nkmr/terapiZona.webp"
+import leherPundak from "../../assets/images/nkmr/leherPundak.webp"
+import Leher from "../../assets/images/nkmr/Leher.webp"
 
 ---
 
@@ -13,7 +20,7 @@
       Promo Sedang Berlangsung
     </div>
     <h1 class="hero-title">Happy Hour<br />Diskon 30%</h1>
-    <p class="hero-subtitle">Setiap Hari • Pukul 13:00 – 15:00</p>
+    <p class="hero-subtitle">Setiap Hari • Pukul 10:00 – 15:00</p>
     <p class="hero-promo-text">
       Nikmati <strong>refleksi & terapi holistik Jepang</strong> dengan harga
       spesial di jam santai Anda
@@ -57,9 +64,9 @@
   </p>
   <div class="treatment-grid">
     <div class="treatment-card reveal">
-      <img
-        src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80"
-        alt="Shiatsu Massage"
+      <Image
+        src={TST}
+        alt="Terapi seluruh tubuh"
         class="treatment-card-img"
         loading="lazy"
       />
@@ -77,9 +84,9 @@
     </div>
 
     <div class="treatment-card reveal">
-      <img
-        src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80"
-        alt="Reflexology"
+       <Image
+        src={MT}
+        alt="Terapi Gabungan"
         class="treatment-card-img"
         loading="lazy"
       />
@@ -97,9 +104,9 @@
     </div>
 
     <div class="treatment-card reveal">
-      <img
-        src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80"
-        alt="Aromatherapy"
+       <Image
+        src={SJ}
+        alt="Seitai Jepang"
         class="treatment-card-img"
         loading="lazy"
       />
@@ -177,21 +184,21 @@
         </ul>
       </div>
       <div class="advantages-gallery reveal">
-        <img
-          src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&q=80"
-          alt="Ruang Terapi Nakamura"
+        <Image
+          src={terapiZona}
+          alt="Terapi Zona"
           class="gallery-img main-img"
           loading="lazy"
         />
-        <img
-          src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&q=80"
-          alt="Sesi Terapi Shiatsu"
+        <Image
+          src={leherPundak}
+          alt="Terapi Leher Pundak"
           class="gallery-img"
           loading="lazy"
         />
-        <img
-          src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=500&q=80"
-          alt="Suasana Ruang Terapi"
+        <Image
+          src={Leher}
+          alt="Stetching"
           class="gallery-img"
           loading="lazy"
         />

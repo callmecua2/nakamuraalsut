@@ -1,5 +1,10 @@
 ---
 // src/components/pages/About.astro
+
+import tangan from "../../assets/images/nkmr/tangan.webp"
+import wajah from "../../assets/images/nkmr/wajah.webp"
+import { Image } from 'astro:assets';
+
 ---
 
 <!-- FIXED FULLSCREEN BACKGROUND LAYER -->
@@ -28,8 +33,8 @@
         </p>
       </div>
       <div class="story-card img-card">
-        <img
-          src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80"
+        <Image
+          src={wajah}
           alt="Sesi Terapi Akupresur Wajah Nakamura"
           loading="lazy"
         />
@@ -39,8 +44,8 @@
     <!-- ROW 2: PENGALAMAN TERBAIK (FOTO KIRI, TEKS KANAN) -->
     <div class="story-row reverse">
       <div class="story-card img-card">
-        <img
-          src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80"
+        <Image
+          src={tangan}
           alt="Sesi Terapi Tangan dan Refleksi Nakamura"
           loading="lazy"
         />
