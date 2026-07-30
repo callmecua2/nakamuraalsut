@@ -1,0 +1,8 @@
+REAL_USERNAME="nakamuraalsut"
+USERNAME="$2b$12$NLNZNY1HGn8IzNvxoU6lq.MlI2xUQpL.CQL5FVIlHpwrZn0m6Dc4K"
+
+REAL_PASSWORD="S@kti2025"
+PASSWORD="$2b$12$wOVqo.44hg8okWJoV8UWe.wl.1GDmpQSM9YZnP7shrn10F0eYNxHK"
+
+
+TOKEN="verylongpasswordfortoken"

@@ -2,7 +2,7 @@
 // src/components/pages/Login.astro
 export const prerender = false; // WAJIB kalau output: "hybrid" di astro.config
 
-import { comparePassword } from "../../encrypt/enkripsi";
+import { comparePassword } from "../../unsued/encrypt/enkripsi";
 
 let errorMessage = "";
 
