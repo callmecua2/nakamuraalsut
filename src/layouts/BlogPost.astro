@@ -161,6 +161,45 @@ function formatDate(date: Date) {
   }
 
   /* Styling elemen Markdown/MDX di dalam <slot /> */
+
+  /* Base Image Styling */
+  .article-content :global(img) {
+    max-width: 100%; /* Mencegah gambar overflow, tapi tidak memaksa gambar kecil jadi besar */
+    height: auto;
+    border-radius: var(--radius-md, 12px);
+    margin: 1.5rem auto;
+    display: block;
+  }
+
+  /* Alignment & Sizing ala WordPress/Blogspot */
+  .article-content :global(img.alignleft),
+  .article-content :global(img[data-align="left"]) {
+    float: left;
+    margin: 0.5rem 1.5rem 1rem 0;
+    max-width: 50%;
+  }
+
+  .article-content :global(img.alignright),
+  .article-content :global(img[data-align="right"]) {
+    float: right;
+    margin: 0.5rem 0 1rem 1.5rem;
+    max-width: 50%;
+  }
+
+  .article-content :global(img.aligncenter),
+  .article-content :global(img[data-align="center"]) {
+    display: block;
+    margin: 1.5rem auto;
+  }
+
+  /* Clearfix untuk paragraf setelah gambar float */
+  .article-content :global(p::after) {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+
   .article-content :global(p) {
     font-size: 1.025rem;
     line-height: 1.85;
