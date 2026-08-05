@@ -2,4 +2,4 @@ User-agent: *
 
 Allow: /
 
-Sitemap: https://nakamuraalamsutera.com/sitemap.xml
+Sitemap: https://nakamuraalamsutera.com/sitemap-index.xml

@@ -1,33 +1,52 @@
-so, guna nya global.css untuk apa? apakah padahal sudah saya import di Layout
 ---
 // src/layouts/Layout.astro
-import Navbar from '../components/UI/Navbar.astro';
-import Footer from "../components/UI/Footer.astro"
-import "../styles/global.css" // <-- Global CSS Diimpor di Sini
+import Navbar from "../components/UI/Navbar.astro";
+import Footer from "../components/UI/Footer.astro";
+import "../styles/global.css"; // <-- Global CSS Diimpor di Sini
+import ogCover from "../assets/images/nkmr/_MEM2081.JPG.webp";
 
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title = "Nakamura Alam Sutera – Refleksi Keluarga & Terapi Holistik Jepang",
   description = "Refleksi Keluarga & Terapi Holistik Jepang di Alam Sutera",
+  noindex = false,
 } = Astro.props;
 
+const canonicalUrl = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.toString();
 
-
+const ogImage = new URL(ogCover.src, Astro.site).toString();
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+
+    <meta property="og:title" content={title} />
+
+    <meta property="og:description" content={description} />
+
+    <meta property="og:url" content={canonicalUrl} />
+
+    <meta property="og:image" content={ogImage} />
+
+    <meta property="og:site_name" content="Nakamura Alam Sutera" />
+
+    <meta property="og:locale" content="id_ID" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
     <!-- CDN Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,9 +54,9 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
       rel="stylesheet"
     />
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
   </head>
   <body>
