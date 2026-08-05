@@ -22,6 +22,37 @@ const canonicalUrl = Astro.site
   : Astro.url.toString();
 
 const ogImage = new URL(ogCover.src, Astro.site).toString();
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+
+  name: "Nakamura Alam Sutera",
+
+  url: Astro.site?.toString(),
+
+  telephone: "+6285778899198",
+
+  email: "nalsut20a@gmail.com",
+
+  image: ogImage,
+
+  address: {
+    "@type": "PostalAddress",
+    streetAddress:
+      "ALAM SUTERA, Jl. Jalur Sutera No.2 Kav.20A, RT.002/RW.015, Kunciran",
+    addressLocality: "Kota Tangerang",
+    addressRegion: "Banten",
+    postalCode: "15144",
+    addressCountry: "ID",
+  },
+
+  openingHours: "Mo-Su 10:00-22:00",
+
+  sameAs: ["https://www.instagram.com/nakamura_alamsutera"],
+
+  hasMap: "https://maps.app.goo.gl/2J23hJhsYMN5zkKk6",
+};
 ---
 
 <!doctype html>
@@ -45,6 +76,11 @@ const ogImage = new URL(ogCover.src, Astro.site).toString();
     <meta property="og:site_name" content="Nakamura Alam Sutera" />
 
     <meta property="og:locale" content="id_ID" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(localBusinessSchema)}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- CDN Fonts & Icons -->
