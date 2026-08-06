@@ -3,9 +3,6 @@ import Navbar from "../components/UI/Navbar.astro";
 import Footer from "../components/UI/Footer.astro";
 import "../styles/global.css";
 import heroImage from "../assets/images/nkmr/_MEM2081.JPG.webp";
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/playfair-display/600.css';
 
 interface Props {
   title?: string;
@@ -86,8 +83,16 @@ const localBusinessSchema = {
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- CDN Fonts (Hanya menyisakan Playfair Display & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- FontAwesome Non-blocking (Asynchronous Load) -->
-    <!-- <link
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       media="print"
@@ -98,7 +103,7 @@ const localBusinessSchema = {
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       />
-    </noscript> -->
+    </noscript>
   </head>
   <body>
     <Navbar />
