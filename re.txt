@@ -6,3 +6,5 @@ PASSWORD="$2b$12$wOVqo.44hg8okWJoV8UWe.wl.1GDmpQSM9YZnP7shrn10F0eYNxHK"
 
 
 TOKEN="verylongpasswordfortoken"
+
+changes = remove keystatic and netlify
