@@ -1,0 +1,65 @@
+// src/data/promos.js
+
+export const promosData = {
+  promos: [
+    {
+      id: 1,
+      title: "Happy Hour 20%",
+      description: "Diskon 20% khusus jam 10.00-14.00",
+      day: "Selasa - Kamis",
+      discount: "20%",
+      icon: "🌅",
+      badge: "Happy Hour",
+    },
+    {
+      id: 2,
+      title: "Member Weekday",
+      description: "Diskon 10% untuk member (1-3 orang)",
+      day: "Senin - Jumat",
+      discount: "10%",
+      icon: "👥",
+      badge: "Member",
+    },
+    {
+      id: 3,
+      title: "Rame-Rame",
+      description: "Diskon 25% untuk minimal 4 orang",
+      day: "Setiap Hari",
+      discount: "25%",
+      icon: "🎉",
+      badge: "Group",
+    },
+    {
+      id: 4,
+      title: "Meridian Massaji",
+      description: "Diskon 10% khusus treatment Meridian Massaji",
+      day: "Selasa - Kamis",
+      discount: "10%",
+      icon: "💆",
+      badge: "Treatment",
+    },
+    {
+      id: 5,
+      title: "Lansia Spesial",
+      description: "Diskon 50% untuk usia 65+ tahun",
+      day: "Setiap Hari",
+      discount: "50%",
+      icon: "👴",
+      badge: "Senior",
+    },
+    {
+      id: 6,
+      title: "Ultah Member",
+      description: "Diskon 50% khusus member yang berulang tahun",
+      day: "Sesuai Tanggal Lahir",
+      discount: "50%",
+      icon: "🎂",
+      badge: "Birthday",
+    },
+  ],
+  footer: {
+    note: "*Diskon 1 s/d 5 berlaku diluar tanggal merah",
+    wa: "085 778899 198",
+    address: "Ruko Jalur Sutera Kav. 20A No. 02, Alam Sutera",
+  },
+};

@@ -1,0 +1,125 @@
+---
+import Card  from "../UI/Card.astro";
+---
+
+
+<div class="page-fixed-bg"></div>
+
+<main class="promo-page">
+  <section class="promo-header">
+    <p class="promo-eyebrow">SPECIAL OFFERS</p>
+
+    <h1>Nikmati Promo<br />Nakamura Alam Sutera</h1>
+
+    <p class="promo-intro">
+      Temukan berbagai penawaran spesial yang tersedia untuk Anda.
+    </p>
+  </section>
+
+  <section class="promo-list" aria-label="Kategori promo">
+    <div class="promo-grid">
+      <Card
+        title="Member"
+        description="Nikmati berbagai keuntungan dan penawaran khusus bagi member Nakamura."
+        href="/card/member"
+        icon="✦"
+      />
+
+      <Card
+        title="Non Member"
+        description="Dapatkan penawaran menarik yang tersedia untuk seluruh pelanggan Nakamura."
+        href="/card/nonmember"
+        icon="◇"
+      />
+
+      <Card
+        title="Weekend & Holiday"
+        description="Manfaatkan promo spesial untuk menemani waktu santai di akhir pekan dan hari libur."
+        href="/card/weekend-holiday"
+        icon="○"
+      />
+    </div>
+  </section>
+</main>
+
+<style>
+  .promo-page {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100vh;
+    padding: 9rem 2rem 6rem;
+  }
+
+  .promo-header {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+
+    text-align: center;
+    color: #fff;
+  }
+
+  .promo-eyebrow {
+    margin: 0 0 1.25rem;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .promo-header h1 {
+    margin: 0;
+
+    font-family: var(--font-serif);
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .promo-intro {
+    max-width: 600px;
+    margin: 1.5rem auto 0;
+
+    font-size: 1rem;
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .promo-list {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .promo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .promo-grid {
+      grid-template-columns: 1fr;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .promo-page {
+      padding: 7rem 1.25rem 4rem;
+    }
+
+    .promo-header {
+      margin-bottom: 3rem;
+    }
+
+    .promo-header h1 {
+      font-size: clamp(2.4rem, 11vw, 3.5rem);
+    }
+  }
+</style>
